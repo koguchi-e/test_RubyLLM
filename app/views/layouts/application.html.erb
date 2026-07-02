@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Test Ruby Llm" %></title>
+    <title><%= content_for(:title) || "Re Novo" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Test Ruby Llm">
+    <meta name="application-name" content="Re Novo">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,6 +17,7 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <script src="https://kit.fontawesome.com/54c0760265.js" crossorigin="anonymous"></script>
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -24,7 +25,18 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <% if notice.present? %>
+      <div data-controller="flash" class="absolute top-20 right-20 w-[300px] rounded border border-green-700 bg-green-200 px-4 py-3 text-green-700 transition-opacity duration-[3000ms] ease-linear" role="status" aria-live="polite">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert.present? %>
+      <div data-controller="flash" class="absolute top-20 right-20 w-[300px] rounded border border-red-700 bg-red-200 px-4 py-3 text-red-700 transition-opacity duration-[3000ms] ease-linear" role="alert">
+        <%= alert %>
+      </div>
+    <% end %>
+    <main class="container relative mx-auto mt-28 px-5">
       <%= yield %>
     </main>
   </body>
